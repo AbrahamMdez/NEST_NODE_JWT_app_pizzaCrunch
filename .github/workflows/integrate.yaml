@@ -2,7 +2,7 @@ name: integration continuos
 
 on: 
   pull_request:
-    branches: [testing]
+    branches: [develop]
 
 jobs: 
   ci_to_develop:
