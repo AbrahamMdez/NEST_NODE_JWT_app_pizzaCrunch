@@ -15,4 +15,8 @@ describe('ProductsController', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
+
+  it('should be have method POST called createProduct', () => {
+    expect(controller.createProduc()).toBe('Product created');
+  });
 });
