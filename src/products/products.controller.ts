@@ -1,4 +1,10 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Res } from '@nestjs/common';
 
 @Controller('products')
-export class ProductsController {}
+export class ProductsController {
+
+    @Post('/create')
+    createProduct(@Res() res) {
+        return 'Product created'
+    }
+}
