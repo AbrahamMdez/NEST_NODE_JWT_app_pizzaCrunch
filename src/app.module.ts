@@ -7,7 +7,9 @@ import { MongooseModule } from '@nestjs/mongoose'
 @Module({
   imports: [
     ProductsModule, 
-    MongooseModule.forRoot('mongodb://localhost/pizza-crunch')
+    MongooseModule.forRoot('mongodb://localhost/pizza-crunch', {
+      useFindAndModify: false
+    })
   ],
   controllers: [AppController],
   providers: [AppService],
