@@ -1,0 +1,14 @@
+name: Test and Build
+
+on: 
+  push:
+    branches: 
+      -master
+
+jobs: 
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm run test
+      - run: npm run build
