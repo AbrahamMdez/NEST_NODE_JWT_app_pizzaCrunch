@@ -1,11 +1,12 @@
-name: integration continuos
+name: Test and Build
 
 on: 
   push:
-    branches: [develop]
+    branches: 
+      -master
 
 jobs: 
-  ci_to_develop:
+  test:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
