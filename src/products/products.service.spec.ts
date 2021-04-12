@@ -12,9 +12,7 @@ describe('ProductsService', () => {
     productService = module.get<ProductsService>(ProductsService);
   });
 
-  it('should return an array of products', async () => {
-    const result = ['test'];
-        
-    expect(await productService.getProducts()).toBe(result);
-  });
+  it('should be defined', () => {
+    expect(productService).toBeDefined();
+});
 });

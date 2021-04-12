@@ -4,22 +4,29 @@ import { ProductsService } from './products.service';
 
 describe('ProductsController', () => {
   let productController: ProductsController;
-  let productService: ProductsService;
+
+  const mockProductService = {};
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [ProductsController],
       providers: [ProductsService]
-    }).compile();
+    })
+      .overrideProvider(ProductsService)
+      .useValue(mockProductService)
+      .compile();
 
     productController = module.get<ProductsController>(ProductsController);
-    productService = module.get<ProductsService>(ProductsService);
+  
   });
 
-  it('should GET ALL products', () => {
-      const result = ['test'];
-      jest.spyOn(productService, 'GET ALL').mockImplementation(() => result);
+  it('should be defined', () => {
+      expect(productController).toBeDefined();
+  });
 
-      expect(await productController.getAllProducts()).toBe(result);
+  const products = ['test'];
+
+  it('should GET all products', async () => {
+    expect( await productController.getAllProducts()).toBe(products);
   });
 });
