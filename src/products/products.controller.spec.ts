@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ProductsController } from './products.controller';
 import { ProductsService } from './products.service';
+import { Controller, Get, Post, Put, Delete, Res, HttpStatus, Body, Param, NotFoundException, Query } from '@nestjs/common';
 
 describe('ProductsController', () => {
   let productController: ProductsController;
@@ -24,9 +25,21 @@ describe('ProductsController', () => {
       expect(productController).toBeDefined();
   });
 
-  const products = ['test'];
+  const productToCreate = { name: "test",
+                            description: "description",
+                            imageURL: "img",
+                            price: 2,
+                            createdAt: new Date};
 
-  it('should GET all products', async () => {
-    expect( await productController.getAllProducts()).toBe(products);
-  });
+  it('should create a product', async() => {
+    expect(await productController.createOneProduct(Res, productToCreate)).toEqual(
+      {
+      id: expect.any(Number),
+      name: "test",
+      description: "description",
+      imageURL: "img",
+      price: 2,
+      createdAt: new Date
+      });
+    });
 });
