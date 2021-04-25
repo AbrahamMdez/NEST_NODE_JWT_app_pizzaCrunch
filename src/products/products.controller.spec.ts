@@ -1,22 +1,46 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ProductsController } from './products.controller';
+import { ProductsService } from './products.service';
+import { Controller, Get, Post, Put, Delete, Res, HttpStatus, Body, Param, NotFoundException, Query } from '@nestjs/common';
 
 describe('ProductsController', () => {
-  let controller: ProductsController;
+  let productController: ProductsController;
+
+  const mockProductService = {};
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [ProductsController],
-    }).compile();
+      providers: [ProductsService]
+    })
+      .overrideProvider(ProductsService)
+      .useValue(mockProductService)
+      .compile();
 
-    controller = module.get<ProductsController>(ProductsController);
+    productController = module.get<ProductsController>(ProductsController);
+  
   });
 
   it('should be defined', () => {
-    expect(controller).toBeDefined();
+      expect(productController).toBeDefined();
   });
 
-  /* it('should be have method POST called createProduct', () => {
-    expect(controller.createProduct()).toBe('received');
-  }); */
+  const productToCreate = { name: "test",
+                            description: "description",
+                            imageURL: "img",
+                            price: 2,
+                            createdAt: new Date
+                          };
+
+  it('should create a product', async() => {
+    expect(await productController.createOneProduct(Res, productToCreate)).toEqual(
+      {
+        id: expect.any(Number),
+        name: "test",
+        description: "description",
+        imageURL: "img",
+        price: 2,
+        createdAt: new Date
+      });
+    });
 });
