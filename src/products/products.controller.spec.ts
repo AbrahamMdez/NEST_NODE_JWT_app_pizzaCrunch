@@ -29,17 +29,18 @@ describe('ProductsController', () => {
                             description: "description",
                             imageURL: "img",
                             price: 2,
-                            createdAt: new Date};
+                            createdAt: new Date
+                          };
 
   it('should create a product', async() => {
     expect(await productController.createOneProduct(Res, productToCreate)).toEqual(
       {
-      id: expect.any(Number),
-      name: "test",
-      description: "description",
-      imageURL: "img",
-      price: 2,
-      createdAt: new Date
+        id: expect.any(Number),
+        name: "test",
+        description: "description",
+        imageURL: "img",
+        price: 2,
+        createdAt: new Date
       });
     });
 });
