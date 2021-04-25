@@ -1,3 +1,4 @@
+/* Este es el modulo file sistem de Node */
 import * as fs from 'fs';
 import { parse } from 'dotenv';
 
@@ -17,12 +18,15 @@ export class ConfigService {
             }
 
             this.envConfig = parse(fs.readFileSync(envFilePath));
-        }
 
-        this.envConfig = {
-            PORT: process.env.PORT
+        } else {
+
+            this.envConfig = {
+                PORT: process.env.PORT
+            };
+
         };
-    }
+    };
 
     get(key: string): string {
         return this.envConfig[key];
